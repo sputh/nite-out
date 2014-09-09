@@ -22,7 +22,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
       user.string('password', 200);
       user.string('first', 75);
       user.string('last', 75);
-      user.integer('zipcode');
+      user.string('zipcode');
     }).then(function(table) {
       console.log('Created Users Table', table);
     });
