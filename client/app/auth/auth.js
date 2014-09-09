@@ -22,6 +22,8 @@ angular.module('nite-out.auth', ['ui.router'])
   // We handle which dialog to display here, based on which button is clicked.
   $scope.loginShown = false;
   $scope.signupShown = false;
+  
+  // For login, move to use ng-morph
 
   // Login button clicked, display the login dialog
   $scope.toggleLogin = function() {
