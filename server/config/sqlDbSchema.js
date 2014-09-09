@@ -3,7 +3,10 @@
 // Setup our connection to the MySQL database
 // that handles our user data.  
 var sql = require('../../keys.js').sqlite3;
-var knex = require('knex')(sql);
+console.log(sql);
+// var knex = require('knex')(sql);
+var Bookshelf = require('bookshelf');
+var db = Bookshelf.initialize(sql);
 
 // Passing an instantiated knex instance.  Passing connection info
 // directly to bookshelf is now deprecated.
@@ -11,8 +14,7 @@ var knex = require('knex')(sql);
 // Setup our connection to the SQLite database
 // that handles our user data.
 
-var db = require('bookshelf')(knex);
-// var Bookshelf = require('bookshelf');
+// var db = require('bookshelf')(knex);
 // var path = require('path');
 
 // var db = Bookshelf.initialize({
@@ -34,7 +36,7 @@ var db = require('bookshelf')(knex);
 db.knex.schema.hasTable('users').then(function(exists) {
   if(!exists) {
     db.knex.schema.createTable('users', function(user) {
-      user.increments('user.id').primary();
+      user.increments('user_id').primary();
       user.string('username', 50).unique();
       user.string('email', 200).unique();
       user.string('password', 200);
@@ -51,7 +53,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
 db.knex.schema.hasTable('eventType').then(function(exists) {
   if(!exists) {
     db.knex.schema.createTable('eventType', function(eventName) {
-      eventName.increments('event.id').primary();
+      eventName.increments('event_id').primary();
       eventName.string('eventType', 50).unique();
     }).then(function(table) {
       console.log('Created EventType', table);
@@ -63,7 +65,7 @@ db.knex.schema.hasTable('eventType').then(function(exists) {
 db.knex.schema.hasTable('movies').then(function(exists) {
   if(!exists) {
     db.knex.schema.createTable('movies', function(movie) {
-      movie.increments('movie.id').primary();
+      movie.increments('movie_id').primary();
       movie.string('movieName', 200).unique();
       movie.string('theaterName', 200);
       movie.integer('zipcode');
@@ -77,7 +79,7 @@ db.knex.schema.hasTable('movies').then(function(exists) {
 db.knex.schema.hasTable('concerts').then(function(exists) {
   if(!exists) {
     db.knex.schema.createTable('concerts', function(concert) {
-      concert.increments('concert.id').primary();
+      concert.increments('concert_id').primary();
       concert.string('perfomance', 200).unique();
       concert.string('venue', 200);
       concert.integer('zipcode');
@@ -91,7 +93,7 @@ db.knex.schema.hasTable('concerts').then(function(exists) {
 db.knex.schema.hasTable('restaurants').then(function(exists) {
   if(!exists) {
     db.knex.schema.createTable('restaurants', function(restaurant) {
-      restaurant.increments('restaurant.id').primary();
+      restaurant.increments('restaurant_id').primary();
       restaurant.string('restaurantName', 200).unique();
       restaurant.integer('zipcode');
     }).then(function(table) {
@@ -104,7 +106,7 @@ db.knex.schema.hasTable('restaurants').then(function(exists) {
 db.knex.schema.hasTable('sports').then(function(exists) {
   if(!exists) {
     db.knex.schema.createTable('sports', function(sport) {
-      sport.increments('sport.id').primary();
+      sport.increments('sport_id').primary();
       sport.string('eventName', 200).unique();
       sport.string('venue', 200);
       sport.integer('zipcode');
@@ -118,9 +120,9 @@ db.knex.schema.hasTable('sports').then(function(exists) {
 db.knex.schema.hasTable('purchaseHistory').then(function(exists) {
   if(!exists) {
     db.knex.schema.createTable('purchaseHistory', function(purchase) {
-      purchase.increments('purchase.id').primary();
-      purchase.integer('buyer').references('user.id').inTable('users');
-      purchase.integer('eventType_id').references('event.id').inTable('eventType');
+      purchase.increments('purchase_id').primary();
+      purchase.integer('buyer').unsigned().references('user_id').inTable('users');
+      purchase.integer('eventType_id').references('event_id').inTable('eventType');
       purchase.integer('eventKey');
     }).then(function(table) {
       console.log('Created Purchase History', table);
