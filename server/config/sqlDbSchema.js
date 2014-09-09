@@ -3,31 +3,11 @@
 // Setup our connection to the MySQL database
 // that handles our user data.  
 var sql = require('../../keys.js').sqlite3;
-console.log(sql);
-// var knex = require('knex')(sql);
-var Bookshelf = require('bookshelf');
-var db = Bookshelf.initialize(sql);
-
-// Passing an instantiated knex instance.  Passing connection info
-// directly to bookshelf is now deprecated.
 
 // Setup our connection to the SQLite database
 // that handles our user data.
-
-// var db = require('bookshelf')(knex);
-// var path = require('path');
-
-// var db = Bookshelf.initialize({
-//   client: 'sqlite3',
-//   connection: {
-//     host: '127.0.0.1',
-//     user: 'default',
-//     password: 'password',
-//     database: 'main',
-//     charset: 'utf8',
-//     filename: path.join(_dirname, './data/main.sqlite')
-//   }
-// });
+var Bookshelf = require('bookshelf');
+var db = Bookshelf.initialize(sql);
 
 /************************************************************/
 // Content aggregation tables
