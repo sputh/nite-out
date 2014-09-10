@@ -10,11 +10,11 @@ module.exports = {
 
   // Method for handling requests for existing users. (GET)
   loginUser: function(req, res, next) {
-    var email = req.query.email;
+    var username = req.query.username;
     var password = req.query.password;
 
     // Query user against the database to see if it is a registered user
-    new User({ email: email })
+    new User({ username: username })
       .fetch()
       .then(function(user) {
         if (!user) {
@@ -40,6 +40,7 @@ module.exports = {
 
   // Method for handling requests to signup new users. (POST)
   signupUser: function(req, res, next) {
+    var username = req.body.username;
     var email = req.body.email;
     var password = req.body.password;
     var first = req.body.first || null;
