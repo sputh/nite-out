@@ -48,7 +48,7 @@ db.knex.schema.hasTable('movies').then(function(exists) {
       movie.increments('movie_id').primary();
       movie.string('movieName', 200).unique();
       movie.string('theaterName', 200);
-      movie.integer('zipcode');
+      movie.string('zipcode');
     }).then(function(table) {
       console.log('Created Movies', table);
     });
@@ -62,7 +62,7 @@ db.knex.schema.hasTable('concerts').then(function(exists) {
       concert.increments('concert_id').primary();
       concert.string('perfomance', 200).unique();
       concert.string('venue', 200);
-      concert.integer('zipcode');
+      concert.string('zipcode');
     }).then(function(table) {
       console.log('Created Concerts', table);
     });
@@ -75,7 +75,7 @@ db.knex.schema.hasTable('restaurants').then(function(exists) {
     db.knex.schema.createTable('restaurants', function(restaurant) {
       restaurant.increments('restaurant_id').primary();
       restaurant.string('restaurantName', 200).unique();
-      restaurant.integer('zipcode');
+      restaurant.string('zipcode');
     }).then(function(table) {
       console.log('Created restaurants', table);
     });
@@ -89,7 +89,7 @@ db.knex.schema.hasTable('sports').then(function(exists) {
       sport.increments('sport_id').primary();
       sport.string('eventName', 200).unique();
       sport.string('venue', 200);
-      sport.integer('zipcode');
+      sport.string('zipcode');
     }).then(function(table) {
       console.log('Created Sports', table);
     });

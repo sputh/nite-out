@@ -13,7 +13,7 @@ var sql =require('../keys.js').sqlite3;
 // variable is not defined.
 var mongoose = require('mongoose');
 var mongodb =require('../keys.js').mongodb;
-var dbURL = mongodb || 'mongodb://localhost/nite-out';
+var dbURL = mongodb;
 mongoose.connect(dbURL);
 
 var app = express();
