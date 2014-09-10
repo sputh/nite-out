@@ -26,7 +26,7 @@ db.knex.schema.hasTable('users').then(function(exists) {
     }).then(function(table) {
       console.log('Created Users Table', table);
     });
-  }
+  } 
 });
 
 // EventType Table
