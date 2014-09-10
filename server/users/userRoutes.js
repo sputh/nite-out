@@ -10,7 +10,7 @@ module.exports = function(app) {
   // user creation and PUT to edit user data.
   app.route('/')
     .get(userController.loginUser)
-    .put(userController.editUser)
+    // .put(userController.editUser)
     .post(userController.signupUser);
 
 };

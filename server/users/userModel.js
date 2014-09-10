@@ -4,7 +4,7 @@
 // which handle password checking for existing users and
 // hashing when registering new users.
 var db = require('../config/sqlDbSchema.js');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var Promise = require('bluebird');
 
 var User = db.Model.extend({
