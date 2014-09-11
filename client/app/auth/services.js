@@ -3,6 +3,11 @@
 angular.module('nite-out.authServices', [
   'ngStorage'
   ])
+.controller('getUserName', function($scope, $localStorage) {
+  $scope.storage = $localStorage.$default({
+    user: 'Guest'
+  });
+});
 
 // Houses all the business logic for our token based application system
 .factory('AuthRequests', ['$http', '$window', 'Main', function($http, $window, Main) {
@@ -11,6 +16,8 @@ angular.module('nite-out.authServices', [
   var setToken = function(token) {
     $window.localStorage.setItem('nite-out.user', token);
   };
+
+  // Token storage is handled by the server by sending back the token in a cookie
 
   // Wrapped in an array in order to allow manipulation without losing context.
   // Setting it based on the existance of an item in localStorage allows
