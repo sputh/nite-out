@@ -23,8 +23,6 @@ angular.module('nite-out.auth', ['ui.router'])
   $scope.loginShown = false;
   $scope.signupShown = false;
   
-  // For login, move to use ng-morph
-
   // Login button clicked, display the login dialog
   $scope.toggleLogin = function() {
     $scope.loginShown = !$scope.loginShown;

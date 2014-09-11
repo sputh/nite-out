@@ -45,6 +45,7 @@ angular.module('nite-out.authServices', [])
     // Upon user verification, we set our current user, save the token
     // and update our auth controller.
     .success(function(res) {
+      console.log("res: ", res);
       Main.user = res.user;
       setToken(res.token);
       resolved.push(true);

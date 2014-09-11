@@ -15,11 +15,8 @@ var User = db.Model.extend({
     this.on('creating', this.hashPassword);
   },
   comparePassword: function(attemptedPassword, callback) {
-    console.log("attemptedPassword: ", attemptedPassword);
-    console.log("pw: ", this.get('password'));
     bcrypt.compare(attemptedPassword, this.get('password'), 
       function(err, isMatch) {
-        console.log("isMatch: ", isMatch);
         callback(isMatch);
       });
     // var isMatch = bcrypt.compareSync(attemptedPassword, this.get('password'));

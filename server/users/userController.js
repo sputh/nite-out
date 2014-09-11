@@ -39,7 +39,6 @@ module.exports = {
           // User exists, call method to compare the supplied password
           // against the one supplied by the user.
           user.comparePassword(password, function(match) {
-            console.log("match: ", match);
             if (match) {
               // The password is a match, send back appropriate header
               // to client application, tokening will be handle by client.
@@ -49,7 +48,12 @@ module.exports = {
                 user: username
               };
               var token = jwt.encode(payload, 'secret');
-              res.json({token: token, zipcode: user.get('zipcode')});
+              console.log("token: ", token)
+              res.json({
+                token: token, 
+                user: user.get('username'), 
+                zipcode: user.get('zipcode')
+              });
             } else {
               // Unauthorized request status code sent back to client.
               next(new Error('Bad password'));
