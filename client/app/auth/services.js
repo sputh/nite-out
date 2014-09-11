@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('nite-out.authServices', [])
+angular.module('nite-out.authServices', [
+  'ngStorage'
+  ])
 
 // Houses all the business logic for our token based application system
 .factory('AuthRequests', ['$http', '$window', 'Main', function($http, $window, Main) {
