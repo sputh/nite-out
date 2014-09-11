@@ -11,13 +11,14 @@ var express = require('express');
 /************************************************************/
 // Token Support 94103
 /************************************************************/
-var makeToken = function(user, username) {
-  var payload = {
-    user: username
-  };
-  var token = jwt.encode(payload, 'secret');
-  res.json({token: token, zipcode: user.get(zipcode)});
-};
+// var makeToken = function(user, username) {
+//   var payload = {
+//     user: username
+//   };
+//   var token = jwt.encode(payload, 'secret');
+//   res.json({token: token, zipcode: user.get(zipcode)});
+//   console.log("made token!");
+// };
 
 // Here we hold all the methods that handle user login and signup.
 module.exports = {
@@ -38,16 +39,17 @@ module.exports = {
           // User exists, call method to compare the supplied password
           // against the one supplied by the user.
           user.comparePassword(password, function(match) {
+            console.log("match: ", match);
             if (match) {
               // The password is a match, send back appropriate header
               // to client application, tokening will be handle by client.
               // CHANGE: send back username and zipcode for default loading
-              makeToken(user, username);
-              // var payload = {
-              //   user: username
-              // };
-              // var token = jwt.encode(payload, 'secret');
-              // res.json({token: token, zipcode: user.get(zipcode)});
+              // makeToken(user, username);
+              var payload = {
+                user: username
+              };
+              var token = jwt.encode(payload, 'secret');
+              res.json({token: token, zipcode: user.get('zipcode')});
             } else {
               // Unauthorized request status code sent back to client.
               next(new Error('Bad password'));
@@ -76,16 +78,26 @@ module.exports = {
         Users.create({
           username: username,
           email: email,
-          password: User.hashPassword,
+          password: password,
           first: first,
-          last: last
+          last: last,
+          zipcode: undefined
         }).then(function(user) {
-          makeToken(user, username);
+          // makeToken(user, username);
+          var payload = {
+            user: username
+          };
+          var token = jwt.encode(payload, 'secret');
+          res.json({
+            token: token, 
+            zipcode: user.get('zipcode') || 94103
+          });
+          console.log("made token!");
           console.log("user: ", user);
         });
       } else {
-        console.log('Account already exists');
-        res.redirect('/signup');
+        next(new Error('Account already exists'));
+        // res.redirect('/');
       }
     });
   },

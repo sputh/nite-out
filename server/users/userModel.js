@@ -15,16 +15,35 @@ var User = db.Model.extend({
     this.on('creating', this.hashPassword);
   },
   comparePassword: function(attemptedPassword, callback) {
+    console.log("attemptedPassword: ", attemptedPassword);
+    console.log("pw: ", this.get('password'));
     bcrypt.compare(attemptedPassword, this.get('password'), 
       function(err, isMatch) {
+        console.log("isMatch: ", isMatch);
         callback(isMatch);
       });
+    // var isMatch = bcrypt.compareSync(attemptedPassword, this.get('password'));
+    // console.log("isMatch: ", isMatch);
+    // callback(isMatch);  
   },
   hashPassword: function()  {
     var cipher = Promise.promisify(bcrypt.hash);
+
+    var salt = bcrypt.genSaltSync(10);
+    // the genSaltSync, is not occuring fast enough to be 
+    // passed into the return function below
     // return a promise - bookshelf will wait for the promise
     // to resolve before completing the create action
-    return cipher(this.get('password'), null, null)
+    // return cipher(10, function(err, salt) {
+    //   password = this.get('password');
+    //   bcrypt.hash(password, salt, null)
+    //     .bind(this)
+    //     .then(function(hash) {
+    //       this.set('password', hash);
+    //     });
+    // })
+
+    return cipher(this.get('password'), salt, null)
       .bind(this)
       .then(function(hash) {
         this.set('password', hash);
@@ -33,17 +52,7 @@ var User = db.Model.extend({
 });
 
 
-//   hashPass: function(){
-//     var db = this;
-//     var password = this.get('password');
-//     bcrypt.genSalt(10, function(err, salt) {
-//       bcrypt.hash(password, salt, function(err, hash) {
-//           db.set('password', hash).save();
-//         });
-//     });
-//   }
-  
-// });
+
 
 // Export the user model for use elsewhere.
 module.exports = User;
