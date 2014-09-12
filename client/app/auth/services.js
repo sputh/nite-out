@@ -38,14 +38,15 @@ angular.module('nite-out.authServices', [
   var userLogin = function(userData) {
     // Empty the array using native angular method to allow for overwriting
     angular.copy([], resolved);
-
-    return $http({
-      method: 'GET',
-      url: '/users',
-      params: userData
-    })
-    // Upon user verification, we set our current user, save the token
-    // and update our auth controller.
+    $http
+      .post('/users/login', userData)
+    // return $http({
+    //   method: 'POST',
+    //   url: '/users'
+    //   // data: userData
+    // })
+    // // Upon user verification, we set our current user, save the token
+    // // and update our auth controller.
     .success(function(res) {
       console.log("res: ", res);
       Main.user = res.user;
