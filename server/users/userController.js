@@ -25,8 +25,10 @@ module.exports = {
 
   // Method for handling requests for existing users. (GET)
   loginUser: function(req, res, next) {
-    var username = req.query.username;
-    var password = req.query.password;
+    var username = req.body.username;
+    var password = req.body.password;
+    console.log('username: ', username);
+    console.log('password: ', password);
 
     // Query user against the database to see if it is a registered user
     new User({ username: username })
@@ -51,7 +53,7 @@ module.exports = {
               console.log("token: ", token)
               res.json({
                 token: token, 
-                user: user.get('username'), 
+                user: username, 
                 zipcode: user.get('zipcode')
               });
             } else {
@@ -93,7 +95,8 @@ module.exports = {
           };
           var token = jwt.encode(payload, 'secret');
           res.json({
-            token: token, 
+            token: token,
+            user: username,
             zipcode: user.get('zipcode') || 94103
           });
           console.log("made token!");

@@ -44,7 +44,7 @@ angular.module('nite-out.auth', ['ui.router'])
 
   $scope.getLoginData = function(data) {
     console.log("AuthRequests: ", AuthRequests);
-    console.log("data: ", data);
+    // console.log("data: ", data);
     AuthRequests.userLogin(data);
   };
 
