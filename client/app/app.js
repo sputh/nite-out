@@ -56,7 +56,7 @@ angular.module('nite-out', [
     replace: true,
     templateUrl: 'app/auth/loggedin.tpl.html',
     link: function(scope) {
-      Main.user = $window.localStorage.getItem('user') || 'GUEST';
+      Main.user = $window.localStorage.getItem('user') || 'sam';
       scope.user = Main.user;
     }
   };
