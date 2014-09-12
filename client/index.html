@@ -22,8 +22,8 @@
   </div>
 
   <div class="user-status" ng-controller="AuthController">
-    <needlogin ng-if="!loginStatus[0]"></needlogin>
-    <loggedin ng-if="loginStatus[0]"></loggedin>
+    <needlogin ng-if="!loginStatus"></needlogin>
+    <loggedin ng-if="!!loginStatus"></loggedin>
     <modal-dialog show="loginShown" action="getLoginData(userInfo)" template-url="app/auth/loginPage.html"></modal-dialog>
     <modal-dialog show="signupShown" action="postSignupData(userInfo)" template-url="app/auth/signupPage.html"></modal-dialog>
   </div>

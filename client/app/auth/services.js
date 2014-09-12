@@ -15,7 +15,9 @@ angular.module('nite-out.authServices', [
   // Wrapped in an array in order to allow manipulation without losing context.
   // Setting it based on the existance of an item in localStorage allows
   // the user to arrive at the site and already be logged in.
-  var resolved = [$window.localStorage.getItem('nite-out.user') !== null];
+  // var resolved = [$window.localStorage.getItem('nite-out.user') !== null];
+  var resolved = [$window.localStorage.getItem('token') !== null]
+  // console.log("resolved: ",$window.localStorage.getItem('token'));
 
   var signup = function(userData) {
     // Empty the array using native angular method to allow for overwriting
@@ -58,9 +60,10 @@ angular.module('nite-out.authServices', [
       $window.localStorage.zipcode = res.zipcode;
       console.log("token: ", $window.localStorage.token)
       console.log("tokenPayload: ", $window.localStorage.user)
-      Main.user = $window.localStorage.user || 'GUEST';
+      Main.user = $window.localStorage.getItem('user');
+      console.log('users: ', $window.localStorage.getItem('user'));
       // setToken(res.token);
-      resolved.push(true);
+      // resolved.push(true);
     });
   };
 
@@ -68,8 +71,8 @@ angular.module('nite-out.authServices', [
     // Empty the resolved array, delete the token from localStorage and update
     // auth controller with new resolved state.
     angular.copy([], resolved);
-    delete $window.sessionStorage.token;
-    delete $window.sessionStorage.user;
+    delete $window.localStorage.token;
+    delete $window.localStorage.user;
 
     $window.localStorage.removeItem('nite-out.user');
     resolved.push(false);
