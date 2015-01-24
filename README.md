@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: Jimmy Jea (jimjea)
+  - __Product Owner__: Jimmy Jea (jimjea), Samantha Puth (sputh)
   - __Scrum Master__: Jarrod Ruhland (jangahroo)
-  - __Development Team Members__: Issaq Al-Ahmed (iAl-Ahmed), Kim Marquardt (robotBones)
+  - __Development Team Members__: Etienne Tripier (etripier), Issaq Al-Ahmed (iAl-Ahmed), Kim Marquardt (robotBones)
 
 ## Table of Contents
 
