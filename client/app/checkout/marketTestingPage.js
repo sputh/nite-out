@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('nite-out.marketTest', ['ui.router'])
 
 .config(['$stateProvider', function($stateProvider) {

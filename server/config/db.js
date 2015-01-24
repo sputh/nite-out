@@ -1,10 +1,8 @@
 'use strict';
 
-// Setup our connection to the SQLite database
+// Setup our connection to the MySQL database
 // that handles our user data.  
-var sqlite = require('sqlite3').verbose();
-// Verbose() should only be used in production mode
-// to aid in debugging as it shows that stack trace
+var sql = require('../../keys.js').mysql;
 var knex = require('knex')(sql);
 
 // Passing an instantiated knex instance.  Passing connection info

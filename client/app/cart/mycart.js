@@ -18,5 +18,5 @@ angular.module('nite-out.mycart', ['ui.router'])
   $scope.deleteItem = function(item){
     var removeItem = Main.cart.indexOf(item);
     Main.cart.splice(removeItem, 1);
-  }
+  };
 }]);
