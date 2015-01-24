@@ -3,9 +3,10 @@
 // allows us to defer to the middleware to handle
 // all routing.
 
-var express = require('express');
+var express  = require('express');
 var mongoose = require('mongoose');
-var mongodb =require('../keys.js').mongodb;
+var mongodb  = process.env.keys.mongodb;
+// var mongodb  = require('../keys.js').mongodb;
 
 // Defer to the locally hosted mongodb if a process
 // variable is not defined.

@@ -4,7 +4,8 @@
 // to our events api.  Keeping our methods seperate allows
 // different api to access these methods in the event
 // there exists a need for crossover.
-var key = require('../../keys.js').eventApiKey;
+var key = process.env.keys.eventApiKey;
+// var key = require('../../keys.js').eventApiKey;
 var Eventbrite = require('eventbrite')({
   app_key: key
 });
