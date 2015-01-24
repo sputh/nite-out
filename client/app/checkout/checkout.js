@@ -24,5 +24,5 @@ angular.module('nite-out.checkout', ['ui.router'])
   $scope.eventGo = function(choice) {
     Search.type = choice;
     $state.go('main.events');
-  }
+  };
 }]);

@@ -16,7 +16,7 @@ angular.module('nite-out.authServices', [
   // Setting it based on the existance of an item in localStorage allows
   // the user to arrive at the site and already be logged in.
   // var resolved = [$window.localStorage.getItem('nite-out.user') !== null];
-  var resolved = [$window.localStorage.getItem('token') !== null]
+  var resolved = [$window.localStorage.getItem('token') !== null];
   // console.log("resolved: ",$window.localStorage.getItem('token'));
 
   var signup = function(userData) {
@@ -58,8 +58,8 @@ angular.module('nite-out.authServices', [
       $window.localStorage.token = res.token;
       $window.localStorage.user = res.user;
       $window.localStorage.zipcode = res.zipcode;
-      console.log("token: ", $window.localStorage.token)
-      console.log("tokenPayload: ", $window.localStorage.user)
+      console.log('token: ', $window.localStorage.token);
+      console.log('tokenPayload: ', $window.localStorage.user);
       Main.user = $window.localStorage.getItem('user');
       console.log('users: ', $window.localStorage.getItem('user'));
       // setToken(res.token);

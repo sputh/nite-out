@@ -9,6 +9,7 @@ module.exports = function(app) {
   // GET requests will be used for login, POST for
   // user creation and PUT to edit user data.
   app.route('/login')
+    // console.log("im loggin in")
     // .get(userController.loginUser)
     // .put(userController.editUser)
     .post(userController.loginUser);

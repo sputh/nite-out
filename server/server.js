@@ -11,10 +11,10 @@ var sql =require('../keys.js').sqlite3;
 
 // Defer to the locally hosted mongodb if a process
 // variable is not defined.
-var mongoose = require('mongoose');
-var mongodb =require('../keys.js').mongodb;
-var dbURL = mongodb;
-mongoose.connect(dbURL);
+// var mongoose = require('mongoose');
+// var mongodb =require('../keys.js').mongodb;
+// var dbURL = mongodb;
+// mongoose.connect(dbURL);
 
 var app = express();
 
